@@ -20,7 +20,7 @@ export const Card = (props: cardProps) => {
     const fetchData = async () => {
       try {
         const cityname = props.cityName;
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=25fcdb8dbedf6b654ad3d33ccf0a55f9`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=cac57f137004c8210bc72d71220c418b`;
         const response = await axios.get(url);
         console.log(response.data);
         setData(response.data);

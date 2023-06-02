@@ -21,7 +21,7 @@ export const Home = () => {
     const fetchData = async () => {
       try {
         const promises = list.map(async (e) => {
-          const url = `https://api.openweathermap.org/data/2.5/weather?q=${e}&appid=25fcdb8dbedf6b654ad3d33ccf0a55f9`;
+          const url = `https://api.openweathermap.org/data/2.5/weather?q=${e}&appid=cac57f137004c8210bc72d71220c418b`;
           const response = await axios.get(url);
           return response.data;
         });
@@ -34,7 +34,7 @@ export const Home = () => {
     };
 
     fetchData();
-  }, [list, parsedArray]);
+  }, []);
 
   return (
     <div className="App">

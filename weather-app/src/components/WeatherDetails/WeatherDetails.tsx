@@ -16,6 +16,7 @@ export const WeatherDetails = () => {
   const storedArray = localStorage.getItem("storedProp");
   const parsedArray = storedArray ? JSON.parse(storedArray) : [];
   const [newList, setNewList] = useState<string[]>(parsedArray);
+  const [added, setAdded]=useState(false)
 
   const handleClick = () => {
     console.log(newList);
@@ -24,11 +25,14 @@ export const WeatherDetails = () => {
 
   const addToList = () => {
     const name = data.name;
-
+    setAdded(true)
     if (!newList.includes(name)) {
       const updatedList = [...newList, name];
       setNewList(updatedList);
+     
       localStorage.setItem("storedProp", JSON.stringify(updatedList));
+      // localStorage.setItem("storedProp", JSON.stringify(updatedList));
+      localStorage.setItem(data.name, JSON.stringify(data));
     }
   };
 
@@ -38,12 +42,21 @@ export const WeatherDetails = () => {
 
   const weatherpng = data.weather ? `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png` : '';
 
+  const removeFromList=()=>{
+    
+    const list1=newList.filter((name) => name !== data.name);
+    setNewList(list1);
+     
+      
+      setAdded(false)
+  }
+
   return (
     <>
       <Header containerStyle={containerStyle} divStyle={divStyle} />
       <div style={WeatherDetailsVerticalStyle}>
         <div style={innerVerticalStyle}>
-          <div style={innerDiv}><img src={back} /></div>
+          <div style={innerDiv} onClick={handleClick}><img src={back} /></div>
           <div style={backStyle} onClick={handleClick}>Back</div>
         </div>
 
@@ -55,13 +68,23 @@ export const WeatherDetails = () => {
         </div>
         <div style={weatherDetGap}></div>
 
-        <div style={innerVerticalStyle}>
+      { !added && <div style={innerVerticalStyle}>
           <div style={addListStyle}>
             <div style={textStyle} onClick={addToList}>Add to list</div>
           </div>
-          <div><img src={union} /></div>
+          <div onClick={addToList}><img src={union} /></div>
         </div>
+}
+{ added && <div style={innerVerticalStyle}>
+          <div style={addListStyle}>
+            <div style={textStyle} >Added to list</div>
+          </div>
+          <div onClick={removeFromList}>Remove</div>
+        </div>
+}
+
       </div>
+  
       <TempCard tempCardStyle={tempCardStyle} data={data} />
     </>
   );

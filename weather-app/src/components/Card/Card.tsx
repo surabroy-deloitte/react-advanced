@@ -20,11 +20,11 @@ export const Card = (props: cardProps) => {
     const fetchData = async () => {
       try {
         const cityname = props.cityName;
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=cac57f137004c8210bc72d71220c418b`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=a7dd691c01de4444f265fafac3dbf90f`;
         const response = await axios.get(url);
         console.log(response.data);
         setData(response.data);
-      
+       
         // setList(props.list)
         console.log("List")
         // console.log(props.list)
@@ -35,6 +35,7 @@ export const Card = (props: cardProps) => {
     };
 
     fetchData();
+    // localStorage.setItem(props.cityName,data)
   }, [props.cityName]);
 
   console.log(data);

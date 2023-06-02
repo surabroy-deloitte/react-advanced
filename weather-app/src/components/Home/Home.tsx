@@ -14,16 +14,18 @@ export const Home = () => {
   const location = useLocation();
   const storedArray: any = localStorage.getItem("storedProp");
   const parsedArray = storedArray ? JSON.parse(storedArray) : [];
-
+  
   useEffect(() => {
     setList(parsedArray);
 
     const fetchData = async () => {
       try {
-        const promises = list.map(async (e) => {
-          const url = `https://api.openweathermap.org/data/2.5/weather?q=${e}&appid=cac57f137004c8210bc72d71220c418b`;
-          const response = await axios.get(url);
-          return response.data;
+        const promises = list.map( (e) => {
+          // const url = `https://api.openweathermap.org/data/2.5/weather?q=${e}&appid=a7dd691c01de4444f265fafac3dbf90f`;
+          // const 
+          const response = localStorage.getItem(e)
+          const parsedresponse=response?JSON.parse(response):[]
+          return parsedresponse;
         });
 
         const fetchedData = await Promise.all(promises);

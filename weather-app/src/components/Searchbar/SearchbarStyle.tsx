@@ -1,0 +1,16 @@
+export const searchbarStyles: React.CSSProperties = {
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: '1%',
+    position: 'absolute',
+    width: '831px',
+    height: '58px',
+    left: '25%',
+    top: '211px',
+    background: '#FDFCFC',
+    border: '1px solid #DADADA',
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
+    borderRadius: '26px',
+  };

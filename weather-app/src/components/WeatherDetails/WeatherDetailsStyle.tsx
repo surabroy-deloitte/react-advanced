@@ -39,13 +39,50 @@ export const addListStyle={
     marginRight:'1rem',
     overflow: 'hidden',
     display:'flex',
+  
     
     // lineHeight: 28,
     color: '#2C2C2C'
 }
+export const addList1Style={
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: '100%',
+    marginRight:'1rem',
+    overflow: 'hidden',
+    display:'flex',
+    backgroundColor: '#009456',
+    borderRadius: '7px',
+    width: '160%',
+    height: '150%',
+    // lineHeight: 28,
+    color: 'white'
+}
 export const textStyle={
 whiteSpace: 'nowrap' as 'nowrap',
 }
+export const text1Style={
+    whiteSpace: 'nowrap' as 'nowrap',
+    padding:'0.2rem'
+    }
+   
+    export const removeDiv={
+        background: '#EC7272',
+        borderRadius: '7px',
+        fontFamily: 'Poppins',
+        fontStyle: 'normal',
+        fontWeight: 500,
+        fontSize: '110%',
+        // lineHeight: '21px',
+        display: 'flex',
+        alignItems: 'center',
+        // textAlign: 'center',
+        color: '#FFFFFF',
+        padding:'0.2rem',
+        width:'105%',
+        height:'130%'
+    }
 export const imgStyle={
     width:'200px',
     height:'100%'

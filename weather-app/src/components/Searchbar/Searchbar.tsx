@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { Default } from "../Default/Default";
 import { defaultStyle, defaultTextStyle } from "../Default/DefaultStyle";
 import { Datalist } from "../Datalist/Datalist";
@@ -6,10 +6,13 @@ import { datalistStyle, verticalStyle } from "../Datalist/DatalistStyle";
 import { Card } from "../Card/Card";
 import { cardStyle } from "../Card/CardStyle";
 import { WeatherDetails } from "../WeatherDetails/WeatherDetails";
+import { HomeStyle } from "../Home/HomeStyle";
+import { WeatherDisplay } from "../WeatherDisplay/WeatherDisplay";
 
 type SearchbarProps={
   searchbarStyles:React.CSSProperties
   list:any
+  data:any
 }
 export const Searchbar=(props:SearchbarProps)=>{
     const [inputValue, setInputValue] = useState('');
@@ -20,9 +23,16 @@ export const Searchbar=(props:SearchbarProps)=>{
     useEffect(() => {
       console.log("hi");
       // console.log(props.list);
+     
+      
   }, []);
     const handleFocus = () => {
+      // localStorage.setItem('toggle','hey')
       setShowPicture(false);
+      // if(!showPicture)
+      localStorage.setItem('toggle','true')
+      // else if(showPicture)
+      // localStorage.setItem('toggle','false')
     };
   
     const handleBlur = () => {
@@ -62,7 +72,13 @@ export const Searchbar=(props:SearchbarProps)=>{
             )}
 
             {showPicture && props.list.length===0 && <Default defaultStyle={defaultStyle} defaultTextStyle={defaultTextStyle} />}
-            {/* {showPicture && props.list.length>0 && <WeatherDetails/>} */}
+            {localStorage.getItem('toggle')!=='true' && 
+            <>
+            {
+            props.data.map((item: any, index: Key | null | undefined) => (
+              <div style={HomeStyle}><WeatherDisplay key={index} data={item} /></div>
+            ))}
+            </>}
         </div>
     );
 }

@@ -40,11 +40,11 @@ export const tempCard1Style={
     background: '#FDFCFC',
     border: '1px solid rgba(0, 0, 0, 0.1)',
     borderRadius: '11px',
-    marginTop:'2rem !important',
-    marginLeft:'10%rem !important',
+    marginTop:'2rem',
+    marginLeft:'20rem',
     display: 'flex',
     justifyContent:'center',
-paddingLeft:'2rem',
+    paddingLeft:'2rem',
     paddingTop:'1.5rem'
 
 }

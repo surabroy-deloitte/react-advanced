@@ -15,12 +15,17 @@ export const Home = () => {
   const location = useLocation();
   const storedArray: any = localStorage.getItem("storedProp");
   const parsedArray = storedArray ? JSON.parse(storedArray) : [];
+  // const flag=false
 
   useEffect(() => {
+    localStorage.setItem('toggle','false')
     setList(parsedArray);
+
+    
   }, []);
 
   useEffect(() => {
+    // localStorage.setItem('toggle','0')
     var fetchedData:any=[]
     const fetchData =  () => {
       try {
@@ -44,11 +49,7 @@ export const Home = () => {
   return (
     <div className="App">
       <Header containerStyle={containerStyle} divStyle={divStyle} />
-      <Searchbar searchbarStyles={searchbarStyles} list={list} />
-      {data.map((item, index) => (
-
-        <div style={HomeStyle}><WeatherDisplay key={index} data={item} /></div>
-      ))}
+      <Searchbar searchbarStyles={searchbarStyles} list={list} data={data} />    
     </div>
   );
 };

@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "../Header/Header";
 import { containerStyle, divStyle } from "../Header/HeaderStyle";
-import { WeatherDetailsVerticalStyle, addListStyle, backStyle, cityNameTextStyle, imgStyle, innerDiv, innerVerticalStyle, tempTextStyle, textStyle, weatherDetGap } from "./WeatherDetailsStyle";
+import { WeatherDetailsVerticalStyle, addList1Style, addListStyle, backStyle, cityNameTextStyle, imgStyle, innerDiv, innerVerticalStyle, removeDiv, tempTextStyle, text1Style, textStyle, weatherDetGap } from "./WeatherDetailsStyle";
 import back from '../../assets/arrow_back_ios_24px.png';
 import union from '../../assets/Union.png';
 import { TempCard } from "../TempCard/TempCard";
 import { tempCardStyle } from "../TempCard/TempCardStyle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const WeatherDetails = () => {
   const location = useLocation();
@@ -17,6 +17,10 @@ export const WeatherDetails = () => {
   const parsedArray = storedArray ? JSON.parse(storedArray) : [];
   const [newList, setNewList] = useState<string[]>(parsedArray);
   const [added, setAdded]=useState(false)
+  useEffect(()=>{
+    parsedArray.includes(data.name)
+    setAdded(true)
+  },[]);
 
   const handleClick = () => {
     console.log(newList);
@@ -46,6 +50,7 @@ export const WeatherDetails = () => {
     
     const list1=newList.filter((name) => name !== data.name);
     setNewList(list1);
+    localStorage.setItem("storedProp", JSON.stringify(list1))
      
       
       setAdded(false)
@@ -76,10 +81,10 @@ export const WeatherDetails = () => {
         </div>
 }
 { added && <div style={innerVerticalStyle}>
-          <div style={addListStyle}>
-            <div style={textStyle} >Added to list</div>
+          <div style={addList1Style}>
+            <div style={text1Style} >Added to list</div>
           </div>
-          <div onClick={removeFromList}>Remove</div>
+          <div onClick={removeFromList} style={removeDiv}>Remove</div>
         </div>
 }
 

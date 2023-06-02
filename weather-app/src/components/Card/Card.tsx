@@ -41,13 +41,9 @@ export const Card = (props: cardProps) => {
   console.log(data);
   const weatherpng = data?.weather ? `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png` : '';
   const handleClick = () => {
-    // setShowWeatherDetails(true);
     console.log(data);
-    // console.log(props.list);
-    // navigate('/weatherDetails', { state: { resp: data, list: props.list } });
-    // navigate('/weatherDetails', { state:data});
     navigate('/weatherDetails', { state: { data } });
-    //  navigate('/weatherDetails', { state: { resp: data, list: props.list } });
+   
   };
 
   return (

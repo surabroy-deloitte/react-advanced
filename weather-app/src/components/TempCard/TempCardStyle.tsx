@@ -16,6 +16,7 @@ export const tempCardStyle={
     paddingTop:'1.5rem'
 
 }
+
 export const tempCardDivStyle={
     marginTop:'1.2rem',
 width:'25%'

@@ -6,6 +6,7 @@ import { containerStyle, divStyle } from "../Header/HeaderStyle";
 import { Searchbar } from "../Searchbar/Searchbar";
 import { searchbarStyles } from "../Searchbar/SearchbarStyle";
 import { WeatherDisplay } from "../WeatherDisplay/WeatherDisplay";
+import { HomeStyle } from "./HomeStyle";
 
 export const Home = () => {
   const [list, setList] = useState<string[]>([]);
@@ -14,36 +15,39 @@ export const Home = () => {
   const location = useLocation();
   const storedArray: any = localStorage.getItem("storedProp");
   const parsedArray = storedArray ? JSON.parse(storedArray) : [];
-  
+
   useEffect(() => {
     setList(parsedArray);
+  }, []);
 
-    const fetchData = async () => {
+  useEffect(() => {
+    var fetchedData:any=[]
+    const fetchData =  () => {
       try {
-        const promises = list.map( (e) => {
-          // const url = `https://api.openweathermap.org/data/2.5/weather?q=${e}&appid=a7dd691c01de4444f265fafac3dbf90f`;
-          // const 
-          const response = localStorage.getItem(e)
-          const parsedresponse=response?JSON.parse(response):[]
-          return parsedresponse;
+        list.map((e) => {
+          const response = localStorage.getItem(e);
+          const resp=response?JSON.parse(response):[]
+          fetchedData=[...fetchedData,resp]
+          console.log(response);
         });
 
-        const fetchedData = await Promise.all(promises);
-        setData(fetchedData);
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchData();
-  }, []);
+    setData(fetchedData)
+    console.log(data)
+  }, [list]);
 
   return (
     <div className="App">
       <Header containerStyle={containerStyle} divStyle={divStyle} />
       <Searchbar searchbarStyles={searchbarStyles} list={list} />
       {data.map((item, index) => (
-        <WeatherDisplay key={index} data={item} />
+
+        <div style={HomeStyle}><WeatherDisplay key={index} data={item} /></div>
       ))}
     </div>
   );
